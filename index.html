@@ -38,7 +38,7 @@
                         <td>{{product.price}}</td>
                         <td>{{product.quantity}}</td>
                         <td>
-                            <input type="number" class="form-control quantity">
+                            <input type="number" class="form-control quantity" v-model.number="product.quantity">
                             <button class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
