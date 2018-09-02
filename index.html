@@ -21,7 +21,6 @@
 <body>
 <div class="container cart" id="app">
     <div class="row">
-        {{totalQuantity}}
         <div class="col-md-8">
             <h1>Cart</h1>
             <table class="table">
@@ -61,17 +60,17 @@
             </div>
         </div>
     </div>
-    <h4>Quantity items: 2</h4>
-    <h4>Total price: 45</h4>
-    <span class="alert alert-success">Order created</span>
-    <button class="btn btn-warning">Create order</button>
+    <h4>Quantity items: {{totalQuantity}}</h4>
+    <h4>Total price: {{totalPrice}}$</h4>
+    <span class="alert alert-success" v-if="status">Order created</span>
+    <button class="btn btn-warning" @click="makeOrder()">Create order</button>
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
     <script>
         const app = new Vue({
            el:'#app',
            data: {
-               status: true,
+               status: false,
                products:[
                    {
                        title: 'Car',
@@ -94,6 +93,9 @@
            methods:{
                foo(){
                    alert('1,2,3,4');
+               },
+               makeOrder(){
+                   this.status = true;
                }
            },
             mounted(){
@@ -101,11 +103,15 @@
             },
             computed:{
                totalQuantity(){
-
                    return this.products.reduce((sum, product) => {
                        return sum + product.quantity;
                    },0);
-               }
+               },
+                totalPrice(){
+                    return this.products.reduce((sum, product) => {
+                        return sum + product.price * product.quantity;
+                },0);
+                }
             }
         });
     </script>
