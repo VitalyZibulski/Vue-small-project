@@ -97,10 +97,23 @@
            },
            methods:{
                addProduct(){
-                   console.log(this.product);
+                   var newProduct = {
+                       title: this.product.title,
+                       price: this.product.price,
+                       quantity: 1
+                   }
+
+                   this.products.push(newProduct);
+
+                   this.product.title = null;
+                   this.product.price = null;
+
+                   //query in database where id = product.id
                },
                makeOrder(){
                    this.status = true;
+
+                   //query in database where id = product.id
                },
                deleteProduct(product){
                    this.products.splice(this.products.indexOf(product),1);
