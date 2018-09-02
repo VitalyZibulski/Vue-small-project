@@ -49,14 +49,14 @@
             <h1>New item</h1>
             <div class="form-group">
                 <label for="">Name</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-model="product.title">
             </div>
             <div class="form-group">
                 <label for="">Price</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" v-model.number="product.price">
             </div>
             <div class="form-group">
-                <button class="btn btn-success" @click="foo()">Add item</button>
+                <button class="btn btn-success" @click="addProduct()">Add item</button>
             </div>
         </div>
     </div>
@@ -70,7 +70,6 @@
         const app = new Vue({
            el:'#app',
            data: {
-               status: false,
                products:[
                    {
                        title: 'Car',
@@ -88,11 +87,17 @@
                        quantity:15
                    }
 
-               ]
+               ],
+               status: false,
+               product:{
+                   title:null,
+                   price:null,
+                   quantity:null
+               }
            },
            methods:{
-               foo(){
-                   alert('1,2,3,4');
+               addProduct(){
+                   console.log(this.product);
                },
                makeOrder(){
                    this.status = true;
