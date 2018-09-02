@@ -19,7 +19,12 @@
     </style>
 </head>
 <body>
-<div class="container cart">
+<div class="container cart" id="app">
+   <span v-if="status">Created</span>
+    <button @click="status = !status">Click</button>
+    <br>
+    {{foo}}
+    <input type="text" v-model="foo">
     <div class="row">
         <div class="col-md-8">
             <h1>Cart</h1>
@@ -105,5 +110,15 @@
     <span class="alert alert-success">Order created</span>
     <button class="btn btn-warning">Create order</button>
 </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script>
+        const app = new Vue({
+           el:'#app',
+           data: {
+               status: true,
+               foo: 'bar',
+           }
+        });
+    </script>
 </body>
 </html>
