@@ -20,11 +20,6 @@
 </head>
 <body>
 <div class="container cart" id="app">
-   <span v-if="status">Created</span>
-    <button @click="status = !status">Click</button>
-    <br>
-    {{foo}}
-    <input type="text" v-model="foo">
     <div class="row">
         <div class="col-md-8">
             <h1>Cart</h1>
@@ -37,51 +32,11 @@
                     <th>Action</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>30$</td>
-                        <td>14</td>
-                        <td>
-                            <input type="number" class="form-control quantity">
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>30$</td>
-                        <td>14</td>
-                        <td>
-                            <input type="number" class="form-control quantity">
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>30$</td>
-                        <td>14</td>
-                        <td>
-                            <input type="number" class="form-control quantity">
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>30$</td>
-                        <td>14</td>
-                        <td>
-                            <input type="number" class="form-control quantity">
-                            <button class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Item 1</td>
-                        <td>30$</td>
-                        <td>14</td>
+                    <tr v-for="(product,index) in products">
+                        <td>{{++index}}</td>
+                        <td>{{product.title}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
                         <td>
                             <input type="number" class="form-control quantity">
                             <button class="btn btn-danger">Delete</button>
@@ -117,6 +72,24 @@
            data: {
                status: true,
                foo: 'bar',
+               products:[
+                   {
+                       title: 'Car',
+                       price:25,
+                       quantity:10
+                   },
+                   {
+                       title: 'Computer',
+                       price:40,
+                       quantity:5
+                   },
+                   {
+                       title: 'Pen',
+                       price:20,
+                       quantity:15
+                   },
+
+               ]
            }
         });
     </script>
