@@ -101,10 +101,6 @@
             },
             computed:{
                totalQuantity(){
-                   /*var total = 0;
-                   this.products.forEach((product) => {
-                        total += product.quantity;
-                   });*/
 
                    return this.products.reduce((sum, product) => {
                        return sum + product.quantity;
