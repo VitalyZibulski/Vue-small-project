@@ -21,6 +21,7 @@
 <body>
 <div class="container cart" id="app">
     <div class="row">
+        {{totalQuantity}}
         <div class="col-md-8">
             <h1>Cart</h1>
             <table class="table">
@@ -56,7 +57,7 @@
                 <input type="text" class="form-control">
             </div>
             <div class="form-group">
-                <button class="btn btn-success">Add item</button>
+                <button class="btn btn-success" @click="foo()">Add item</button>
             </div>
         </div>
     </div>
@@ -71,7 +72,6 @@
            el:'#app',
            data: {
                status: true,
-               foo: 'bar',
                products:[
                    {
                        title: 'Car',
@@ -87,10 +87,30 @@
                        title: 'Pen',
                        price:20,
                        quantity:15
-                   },
+                   }
 
                ]
-           }
+           },
+           methods:{
+               foo(){
+                   alert('1,2,3,4');
+               }
+           },
+            mounted(){
+               //download datas from server
+            },
+            computed:{
+               totalQuantity(){
+                   /*var total = 0;
+                   this.products.forEach((product) => {
+                        total += product.quantity;
+                   });*/
+
+                   return this.products.reduce((sum, product) => {
+                       return sum + product.quantity;
+                   },0);
+               }
+            }
         });
     </script>
 </body>
