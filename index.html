@@ -107,9 +107,9 @@
            },
             mounted(){
                const vm = this;
-                reqwest('/products.json', function (resp) {
+                reqwest('/products.php', function (resp) {
                     //console.log(resp);
-                    vm.products = resp;
+                    vm.products = JSON.parse(resp);
                 })
                //download datas from server
             },
