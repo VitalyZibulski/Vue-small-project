@@ -35,7 +35,7 @@
                     <tr v-for="(product,index) in products">
                         <td>{{++index}}</td>
                         <td>{{product.title}}</td>
-                        <td>{{product.price}}</td>
+                        <td>{{product.price}}$</td>
                         <td>{{product.quantity}}</td>
                         <td>
                             <input type="number" class="form-control quantity" v-model.number="product.quantity">
@@ -66,28 +66,12 @@
     <button class="btn btn-warning" @click="makeOrder(product)">Create order</button>
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reqwest/2.0.5/reqwest.js"></script>
     <script>
         const app = new Vue({
            el:'#app',
            data: {
-               products:[
-                   {
-                       title: 'Car',
-                       price:25,
-                       quantity:10
-                   },
-                   {
-                       title: 'Computer',
-                       price:40,
-                       quantity:5
-                   },
-                   {
-                       title: 'Pen',
-                       price:20,
-                       quantity:15
-                   }
-
-               ],
+               products:[],
                status: false,
                product:{
                    title:null,
@@ -122,6 +106,11 @@
                }
            },
             mounted(){
+               const vm = this;
+                reqwest('/products.json', function (resp) {
+                    //console.log(resp);
+                    vm.products = resp;
+                })
                //download datas from server
             },
             computed:{
