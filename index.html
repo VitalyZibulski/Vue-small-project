@@ -92,7 +92,14 @@
                    this.product.title = null;
                    this.product.price = null;
 
-                   //query in database where id = product.id
+                   reqwest({
+                       url: '/addProduct.php'
+                       , method: 'post'
+                       , data: { product: newProduct }
+                       , success: function (resp) {
+
+                       }
+                   })
                },
                makeOrder(){
                    this.status = true;
