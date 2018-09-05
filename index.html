@@ -109,7 +109,14 @@
                deleteProduct(product){
                    this.products.splice(this.products.indexOf(product),1);
 
-                   //query in database where id = product.id
+                   reqwest({
+                       url: '/deleteProduct.php'
+                       , method: 'post'
+                       , data: { product_id: product.id }
+                       , success: function (resp) {
+
+                       }
+                   })
                }
            },
             mounted(){
